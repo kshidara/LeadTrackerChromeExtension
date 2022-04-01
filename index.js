@@ -21,7 +21,7 @@ if (leadsFromLocalStorage) {
 tabBtn.addEventListener("click", function(){
 
     //ask chrome browser to retrieve current page's url to save
-    
+
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 
         myLeads.push(tabs[0].url)
@@ -29,8 +29,6 @@ tabBtn.addEventListener("click", function(){
         render(myLeads)
 
     }) 
-
-   
 
 })
 
