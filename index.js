@@ -1,47 +1,32 @@
 // chrome://extensions/
 
 let myLeads = []
-
-
-
+let oldLeads = []
 const inputEl = document.getElementById("input-el");  //const can't be reassigned
 const inputBtn = document.getElementById("input-btn");
 const ulEl = document.getElementById("ul-el");
+const deleteBtn = document.getElementById("delete-btn")
 
 
 // ["lead1","lead2"] or null
-let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
-
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 
 if (leadsFromLocalStorage) {
 
     myLeads = leadsFromLocalStorage
-    renderLeads()
+    render(myLeads)
 
 } 
 
-
-inputBtn.addEventListener("click", function() {
-
-    myLeads.push(inputEl.value)
-    inputEl.value = ""
-    localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    renderLeads()
-
-    //To verify that it works:
-    console.log(localStorage.getItem("myLeads"))
-})
-
-
-function renderLeads(){
+function render(leads){
 
     let listItems = ""  //holds all HTML for list items
-    for (let i = 0; i < myLeads.length; i++) {
+    for (let i = 0; i < leads.length; i++) {
 
         listItems += `
                     <li>
-                        <a  target='_blank'  href='${myLeads[i]}'>
-                            ${myLeads[i]}                       
+                        <a  target='_blank'  href='${leads[i]}'>
+                            ${leads[i]}                       
                         </a>
                     </li>
         `
@@ -50,6 +35,27 @@ function renderLeads(){
 
     ulEl.innerHTML = listItems 
 }
+
+
+deleteBtn.addEventListener("dblclick", function(){
+    localStorage.clear()
+    myLeads = []
+    render(myLeads)
+
+})
+
+
+inputBtn.addEventListener("click", function() {
+
+    myLeads.push(inputEl.value)
+    inputEl.value = ""
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    render(myLeads)
+
+    //To verify that it works:
+    console.log(localStorage.getItem("myLeads"))
+})
+
 
 
 
