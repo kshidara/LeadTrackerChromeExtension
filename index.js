@@ -1,11 +1,11 @@
 // chrome://extensions/
 
 let myLeads = []
-let oldLeads = []
 const inputEl = document.getElementById("input-el");  //const can't be reassigned
 const inputBtn = document.getElementById("input-btn");
 const ulEl = document.getElementById("ul-el");
 const deleteBtn = document.getElementById("delete-btn")
+const tabBtn = document.getElementById("tab-btn")
 
 
 // ["lead1","lead2"] or null
@@ -17,6 +17,22 @@ if (leadsFromLocalStorage) {
     render(myLeads)
 
 } 
+
+tabBtn.addEventListener("click", function(){
+
+    //ask chrome browser to retrieve current page's url to save
+    
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+
+    }) 
+
+   
+
+})
 
 function render(leads){
 
@@ -30,7 +46,6 @@ function render(leads){
                         </a>
                     </li>
         `
-
     }
 
     ulEl.innerHTML = listItems 
