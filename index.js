@@ -1,21 +1,35 @@
 // chrome://extensions/
 
 let myLeads = []
+
+
+
 const inputEl = document.getElementById("input-el");  //const can't be reassigned
 const inputBtn = document.getElementById("input-btn");
 const ulEl = document.getElementById("ul-el");
 
-// global variable,set key and variable as strings (primitive db so it only takes stringss as key/value)
-localStorage.setItem("myLeads", "www.examplelead.com")
-console.log(localStorage.getItem("myLeads"))
-localStorage.clear()
+
+// ["lead1","lead2"] or null
+let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+
+
+if (leadsFromLocalStorage) {
+
+    myLeads = leadsFromLocalStorage
+    renderLeads()
+
+} 
+
 
 inputBtn.addEventListener("click", function() {
 
     myLeads.push(inputEl.value)
     inputEl.value = ""
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
     renderLeads()
 
+    //To verify that it works:
+    console.log(localStorage.getItem("myLeads"))
 })
 
 
@@ -36,6 +50,12 @@ function renderLeads(){
 
     ulEl.innerHTML = listItems 
 }
+
+
+
+
+
+
 
 
 
