@@ -5,3 +5,11 @@ This extension will allow users to take notes and save links while navigating va
 * Save functionality with input bar 
 * Save Link functionality that automatically copies/pastes the url  of currently open site
 * Delete functionality where you can reset your previously saved list 
+
+![](Images/extensionsPic.png)
+
+![](Images/ApplicationPage.png)
+
+![](Images/instaPage.png)
+
+![](Images/linkedinPic.png)
