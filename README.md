@@ -13,3 +13,4 @@ This extension will allow users to take notes and save links while navigating va
 ![](Images/instaPage.png)
 
 ![](Images/linkedinPic.png)
+
